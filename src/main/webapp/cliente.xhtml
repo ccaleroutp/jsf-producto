@@ -1,0 +1,39 @@
+<ui:composition
+    template="/WEB-INF/templates/welcome.xhtml"
+    xmlns:ui="jakarta.faces.facelets"
+    xmlns:h="jakarta.faces.html"
+    xmlns:f="jakarta.faces.core">
+    <ui:define name="contenido">
+        <h2>Lista de Clientes</h2>
+        <h:dataTable
+            value="#{clienteBean.lista}"
+            var="c"
+            styleClass="tabla"
+            rowClasses="filaBlanca, filaGris">
+            <h:column>
+                <f:facet name="header">
+                    ID
+                </f:facet>
+                #{c.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Nombre
+                </f:facet>
+                #{c.nombre}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Correo
+                </f:facet>
+                #{c.correo}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Teléfono
+                </f:facet>
+                #{c.telefono}
+            </h:column>
+        </h:dataTable>
+    </ui:define>
+</ui:composition>

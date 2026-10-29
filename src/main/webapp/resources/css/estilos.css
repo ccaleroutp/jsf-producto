@@ -1,0 +1,69 @@
+* {
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.pagina {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.cabecera {
+    background: #1e3a5f;
+    color: white;
+    padding: 15px 25px;
+}
+.cabecera h1 {
+    margin: 0;
+}
+.cuerpo {
+    display: flex;
+    flex: 1;
+}
+.menu {
+    width: 200px;
+    flex-shrink: 0;
+    background: #e8edf3;
+    padding: 20px;
+}
+.menu a {
+    display: block;
+    padding: 12px;
+    margin-bottom: 8px;
+    color: #1e3a5f;
+    text-decoration: none;
+}
+.menu a:hover {
+    background: #cbd5e1;
+}
+.contenido {
+    flex: 1;
+    padding: 25px;
+}
+.pie {
+    background: #1e3a5f;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+.tabla{
+    border-collapse:collapse;
+    width:80%;
+}
+.tabla th{
+    background:#1565C0;
+    color:white;
+    padding:8px;
+}
+.tabla td{
+    padding:8px;
+    border:1px solid gray;
+}
+.filaBlanca {
+    background-color: white;
+}
+.filaGris {
+    background-color: #e8e8e8;
+}

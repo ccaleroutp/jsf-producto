@@ -1,37 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        <h2>Lista de Productos</h2>
-        <h:dataTable value="#{productoBean.lista}" 
-                     var="p"
-                     border="1"
-                     style="border-collapse:collapse; width:70%;">
-            <h:column>
-                <f:facet name="header">Código</f:facet>
-                #{p.codigo}
-            </h:column>
-            
-            <h:column>
-                <f:facet name="header">Nombre</f:facet>
-                #{p.nombre}
-            </h:column>
-            
-            <h:column>
-                <f:facet name="header">Precio</f:facet>
-                S/. #{p.precio}
-            </h:column>
-            
-            <h:column>
-                <f:facet name="header">Stock</f:facet>
-                #{p.stock}
-            </h:column>
-            
-        </h:dataTable>
-    </h:body>
-</html>
+<ui:composition xmlns:ui="jakarta.faces.facelets"
+                template="/WEB-INF/templates/welcome.xhtml">
+    
+    <ui:define name="contenido">
+        <h2>Bienvenido</h2>
+        <p>Bienvenido a la aplicación de gestión.</p>
+        <p>Selecciona una opción del menú lateral.</p>
+    </ui:define>
+    
+</ui:composition>
