@@ -2,31 +2,95 @@
     template="/WEB-INF/templates/welcome.xhtml"
     xmlns:ui="jakarta.faces.facelets"
     xmlns:h="jakarta.faces.html"
-    xmlns:f="jakarta.faces.core">
-    
+    xmlns:f="jakarta.faces.core"
+    xmlns:p="primefaces">
+
     <ui:define name="contenido">
-        <h2>Lista de Productos</h2>
-        <h:dataTable value="#{productoBean.lista}"
-                     var="p"
-                     styleClass="tabla"
-                     rowClasses="filaBlanca, filaGris">
-            <h:column>
-                <f:facet name="header">Código</f:facet>
-                    #{p.codigo}
-            </h:column>
-            
-            <h:column>
-                <f:facet name="header">Nombre</f:facet>
-                    #{p.nombre}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Precio</f:facet>
-                S/. #{p.precio}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Stock</f:facet>
-                    #{p.stock}
-            </h:column>
-        </h:dataTable>
+        <h:form id="formProductos">
+
+            <p:panel header="Nuevo producto">
+                <p:panelGrid columns="4" layout="grid">
+                    <p:outputLabel value="NOMBRE:" />
+                    <p:inputText 
+                        value="#{productoBean.newProducto.nombre}" 
+                        size="30" 
+                        required="true" 
+                        requiredMessage="Ingrese el nombre"/>
+
+                    <p:outputLabel value="PRECIO (S/.):" />
+                    <p:inputNumber value="#{productoBean.newProducto.precio}" 
+                                   size="10" 
+                                   decimalPlaces="2" 
+                                   required="true" 
+                                   requiredMessage="Ingrese el precio"/>
+
+                    <p:outputLabel value="STOCK:" />                    
+                    <p:inputNumber value="#{productoBean.newProducto.stock}" 
+                                   size="10" 
+                                   decimalPlaces="0" 
+                                   required="true" 
+                                   requiredMessage="Ingrese el stock"/>
+
+                    <p:commandButton 
+                        value="#{empty productoBean.newProducto.codigo ? 'Guardar' : 'Actualizar'}" 
+                        icon="pi pi-save" 
+                        action="#{productoBean.guardar}" 
+                        process="@form"
+                        update="formProductos"/>
+
+                </p:panelGrid>                
+
+            </p:panel>
+
+            <div>
+                <h:commandButton value="XLS" styleClass="mr-2 mb-2">
+                    <p:dataExporter type="xls" target="ptproductos" fileName="products"/>
+                </h:commandButton>
+            </div>
+
+            <p:dataTable value="#{productoBean.listProductos}"
+                         var="p"                     
+                         paginator="true"
+                         rows="3"
+                         emptyMessage="No encontraron productos a mostrar"
+                         stripedRows="true" 
+                         id="ptproductos">
+                <p:column headerText="Código">
+                    <h:outputText value="#{p.codigo}"/>                    
+                </p:column>
+
+                <p:column headerText="Nombre" filterBy="#{p.nombre}" filterMatchMode="contains">
+                    <h:outputText value="#{p.nombre}"/>                    
+                </p:column>
+
+                <p:column headerText="Precio" sortBy="#{p.precio}">
+                    <h:outputText value="#{p.precio}"/>                    
+                </p:column>
+
+                <p:column headerText="Stock">
+                    <h:outputText value="#{p.stock}"/>                    
+                </p:column>
+
+                <p:column headerText="Opciones"> 
+                    <p:commandButton 
+                        icon="pi pi-pencil" 
+                        title="Editar" 
+                        action="#{productoBean.editar(p)}" 
+                        process="@this" 
+                        update="@form" 
+                        styleClass="ui-button-warning" 
+                        style="margin-right: 10px"/>
+
+                    <p:commandButton 
+                        title="Eliminar" 
+                        icon="pi pi-trash"
+                        action="#{productoBean.eliminar(p.codigo)}"
+                        update="@form" 
+                        process="@this"
+                        onclick="return confirm('¿Está seguro de eliminar este registro?');"/>
+
+                </p:column>
+            </p:dataTable>
+        </h:form>
     </ui:define>
 </ui:composition>
