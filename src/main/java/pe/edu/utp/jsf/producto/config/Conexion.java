@@ -18,7 +18,7 @@ public class Conexion {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         return DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/empresa",
+                "jdbc:mysql://localhost:3306/empresa?sslMode=DISABLED&allowPublicKeyRetrieval=true",
                 "root", "12345678");
     }
 

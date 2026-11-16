@@ -12,13 +12,8 @@
             <ui:include src="header.xhtml"/>
 
             <div class="cuerpo">
-                <nav class="menu">
-                    <h:link outcome="/index" value="Inicio"/>
-                    <br/><br/>
-                    <h:link outcome="/producto" value="Productos"/>
-                    <br/><br/>
-                    <h:link outcome="/cliente" value="Clientes"/>
-                </nav>
+               
+                <ui:include src="menu.xhtml"/>
 
                 <ui:insert name="contenido">            
                     Bienvenido al Sistema            

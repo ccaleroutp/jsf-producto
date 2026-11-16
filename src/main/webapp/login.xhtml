@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:pt="jakarta.faces.passthrough"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>#{msg['title.aplication']}</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"/>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="d-flex justify-content-end gap-2 p-3">
+                <h:form>
+                    <h:commandButton value="Español"
+                                     action="#{idiomaBean.cambiarIdioma('es')}"
+                                     class="btn btn-secondary"/>
+                    <h:commandButton value="English"
+
+                                     action="#{idiomaBean.cambiarIdioma('en')}"
+                                     class="btn btn-secondary"/>
+                    <h:commandButton value="Français"
+
+                                     action="#{idiomaBean.cambiarIdioma('fr')}"
+                                     class="btn btn-secondary"/>
+                </h:form>
+            </div>
+        </div>
+        <h:form id="formLogin">
+            <div class="container mt-5 w-50">
+                <div class="card shadow">
+                    <div class="card-header text-center">
+                        <h4 class="mb-0">#{msg['title.login']}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <h:outputLabel
+                                for="nombre"
+                                value="#{msg['subtitle.username']}:"
+                                class="form-label fw-semibold mt-3"/>
+                            <h:inputText id="usuario"
+                                         value="#{loginBean.usuario}"
+                                         required="true"
+
+                                         requiredMessage="#{msg['message.username']}."
+                                         styleClass="form-control"
+
+                                         pt:placeholder="#{msg['message.username']}"/>
+                            <h:message for="usuario"
+                                       style="color:red"/>
+                        </div>
+                        <div class="mb-3">
+                            <h:outputLabel
+                                for="password"
+                                value="#{msg['subtitle.password']}:"
+                                class="form-label fw-semibold mt-3"/>
+                            <h:inputSecret
+                                id="clave"
+                                value="#{loginBean.clave}"
+                                required="true"
+
+                                requiredMessage="#{msg['message.password']}."
+
+                                validatorMessage="#{msg['message.password.err.length']}"
+                                styleClass="form-control"
+
+                                pt:placeholder="#{msg['message.password']}"
+                                >
+                                <f:validateLength minimum="5"
+                                                  maximum="20"/>
+                            </h:inputSecret>
+                            <h:message for="clave" style="color:red"/>
+                        </div>
+                        <h:commandButton
+                            value="#{msg['btnLogin']}"
+                            action="#{loginBean.validarAcceso()}"
+                            class="btn btn-primary w-50"
+                            />
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</html>
